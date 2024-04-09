@@ -24,10 +24,10 @@
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-  blah, blah, blah,
+ the goal of the code is to allow the user to take or upload an image that will then be loaded onto a canvas element.
  
   Known Issues:
-  blah, blah, blah, blah
+  image might appear rotated.
 -->
 
  <head>
@@ -120,6 +120,10 @@
       <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
     </div>
     <div id="messageDisplayArea"></div> <!-- Area to display messages -->
+
+   <!-- First canvas for displaying the original image -->
+    <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+    
     
           
         } // end of img.onload
