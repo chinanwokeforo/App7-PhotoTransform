@@ -155,7 +155,14 @@
             // Draw the original image on the first canvas
             context.drawImage(img, 0, 0);
  
-    
+     // Get the second canvas and its context
+            var canvasBlue = document.getElementById('myCanvasBlue');
+            var contextBlue = canvasBlue.getContext("2d");
+            canvasBlue.width = img.width;
+            canvasBlue.height = img.height;
+           
+            // Draw the original image on the second canvas
+            contextBlue.drawImage(img, 0, 0);
           
         } // end of img.onload
         
