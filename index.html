@@ -131,8 +131,30 @@
     <p>DIY Diagnostics</p> <!-- Footer for attribution -->
   </div><!-- /footer -->
 </div><!-- /page -->
+      
 <script>
 
+  // Function to execute when the window is loaded
+  window.onload = function() {
+    // Event listener for the file input field
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      // Check if the selected file is an image
+      if (file.type.match('image.*')) {
+        // Function to execute when the file is loaded
+        reader.onload = function(event) {
+          var img = new Image();
+          img.onload = function() {
+            // Get the first canvas and its context
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext("2d");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            // Draw the original image on the first canvas
+            context.drawImage(img, 0, 0);
+ 
     
           
         } // end of img.onload
