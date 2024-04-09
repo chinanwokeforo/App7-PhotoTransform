@@ -163,7 +163,11 @@
            
             // Draw the original image on the second canvas
             contextBlue.drawImage(img, 0, 0);
-          
+
+          // Get the image data of the second canvas
+            var imageData = contextBlue.getImageData(0, 0, canvasBlue.width, canvasBlue.height);
+            var data = imageData.data;
+           
         } // end of img.onload
         
         img.src = reader.result;
