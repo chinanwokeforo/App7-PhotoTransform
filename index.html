@@ -167,44 +167,30 @@
           // Get the image data of the second canvas
             var imageData = contextBlue.getImageData(0, 0, canvasBlue.width, canvasBlue.height);
             var data = imageData.data;
-           
-        } // end of img.onload
-        
-        img.src = reader.result;
-      } //  end of reader.onload
-      
-      reader.readAsDataURL(file);
-    } // end of the if statement checking that file is an image
-    else
-    {
-      // this is what happens if the orignial file selected is not an image file
-      messageDisplayArea.innerHTML = "File not supported!"
-    } // end of the else statement if file in NOT an image
-  }); // end of the fileInput.addEventListener function
- } // end of the window.onload function
- </script>
- </head>
 
- <body>
-  <div data-role="page">
-    <div data-role="header">
-    <h1>Primary Colors</h1></div><!-- /header -->
-    <div data-role="content">	
-      <h2>Push button to take picture.</h2>
-      <div>
-        Press orange button to create or choose image file:
-        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
-      </div>
-      <div id="messageDisplayArea"></div>
-      
-      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("Original image will go here", 10, 20);
-      </script>
+           // Loop through the image data and set blue channel to max
+            for(var i = 0, n = data.length; i < n; i += 4) {
+              data[i] = 0; // Set blue channel value to 0
+              data[i + 1] = 0; // Set green channel value to 0
+            }
+           
+      // Put the modified image data back onto the second canvas
+            contextBlue.putImageData(imageData, 0, 0); // Display the image with only blue intensities
+          };
+          img.src = event.target.result;
+        };
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      } else {
+        // Display message if the file is not an image
+        var messageDisplayArea = document.getElementById('messageDisplayArea');
+        messageDisplayArea.innerHTML = "File not supported!";
+      }
+    });
+  };
+</script>
+</body>
+</html>
 
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
